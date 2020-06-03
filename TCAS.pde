@@ -21,16 +21,18 @@ void draw(){
     //chordl=2*100*sin(140/2);
     rect(135, 20, 525,500); 
     
-    stroke(0,204,0);
-    dash.line(399, 50, 399, 400);
-    
+    //AVION PROPIO
     noStroke();
     fill(255,255,50);
     rect(400,400,4,45);
     rect(380,410,45,4);
     rect(394,435,16,4);
+    rect(400,36,4,35);
+    
     //VERDE
     fill(0,204,0);
     rect(400,50,2,350);
-
+    stroke(0,204,0);
+    dash.line(399, 50, 399, 400);
+   
 }
