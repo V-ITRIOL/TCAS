@@ -15,8 +15,10 @@ void draw(){
     dash.arc(width/2, 450, 600, 600, radians(210),radians(330));
     dash.arc(width/2, 450, 400, 400, radians(radi),radians(radf));
     dash.arc(width/2, 450, 200, 200, radians(radi),radians(radf));
-    //chordl=2*300*sin(140/2);
-    rect(135, 20, 525,500);
+    //chordl=2*100*sin(140/2);
+    rect(135, 20, 525,500); 
     
-    
+    noStroke();
+    fill(200);
+    rect(400,450,5,30);
 }
