@@ -32,5 +32,8 @@ void draw(){
     //VERDE
     fill(0,204,0);
     rect(400,50,2,350);
-
+    //RECTANGULO GPS PRIMARY
+    stroke(255);
+    noFill();
+    rect(230,470,340,20);
 }
