@@ -35,4 +35,10 @@ void draw(){
     stroke(0,204,0);
     dash.line(399, 50, 399, 400);
    
+
+    //RECTANGULO GPS PRIMARY
+    stroke(255);
+    noFill();
+    rect(230,470,340,20);
+
 }
