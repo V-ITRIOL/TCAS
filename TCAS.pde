@@ -1,6 +1,7 @@
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
-float r1=600, r2=400,r3=200;
+
+float r1=600, r2=400,r3=200, r4=800;
 void setup(){
     dash = new DashedLines(this);
     dash.pattern(5,10);
@@ -8,12 +9,15 @@ void setup(){
     background(0);
 }
 
+
 void draw(){
     //float chordl;
     int radi=200, radf=340;
 
+    
     stroke(255);
     noFill();
+    arc(width/2, 450, r4, 800, radians(229), radians(310));
     dash.arc(width/2, 450, r1, 600, radians(210),radians(330));
     dash.arc(width/2, 450, r2, 400, radians(radi),radians(radf));
     dash.arc(width/2, 450, r3, 200, radians(radi),radians(radf));
