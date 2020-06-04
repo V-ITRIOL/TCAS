@@ -9,7 +9,6 @@ void setup(){
     dash = new DashedLines(this);
     dash.pattern(5,10);
     size(800, 800);
-    strokeWeight(1.5);
     for (int i = 0; i < crafts.length; i++) {
       crafts[i] = new Aircraft();
     }
@@ -18,7 +17,7 @@ void setup(){
 void draw(){
     //DEJAR EL BACKGROUND AQUI SINO LOS MATO
     background(0);
-    
+    strokeWeight(1.5);
   //TEXTO BLANCO
     noStroke();
     fill(255,255,255);
@@ -70,7 +69,7 @@ void draw(){
     
     //FLECHA BLANCA
     fill(255,255,255);
-    rect(153,560,3,-25);
+    rect(153,560,1.5,-25);
     stroke(255);
     noFill();
     triangle(140,535,170,535,155,515);
@@ -79,8 +78,8 @@ void draw(){
     //FLECHA DERECHA
     noStroke();
     fill(255,255,255);
-    rect(625,560,3,-25);
-    rect(638,560,3,-25);
+    rect(625,560,1.5,-25);
+    rect(638,560,1.5,-25);
     stroke(255);
     line(612, 535, 625, 535);
     line(639, 535, 652, 535);
