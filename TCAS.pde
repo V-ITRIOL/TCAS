@@ -107,7 +107,11 @@ void draw(){
       }
       longStroke=!longStroke;
     }
-    
+    //Rectángulos negros
+    fill(0);
+    noStroke();
+    rect(-400,-800,135,1000);
+    rect(261,-800,800,1000);
     
     //Movimiento Aeronaves y muestra de las mismas.
     for (int i = 0; i < crafts.length; i++) {
