@@ -1,3 +1,6 @@
+//Arreglo que contiene las aeronaves.
+Aircraft[] crafts = new Aircraft[100];
+
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
 float r1=600, r2=400,r3=200, r4=800;
@@ -8,6 +11,9 @@ void setup(){
     size(800,600);
     background(0);
     strokeWeight(1.5);
+    for (int i = 0; i < crafts.length; i++) {
+      crafts[i] = new Aircraft();
+    }
 }
 
 void draw(){
@@ -100,5 +106,11 @@ void draw(){
         line(0, -400,0,-410);
       }
       longStroke=!longStroke;
+    }
+    
+    //Movimiento Aeronaves y muestra de las mismas.
+    for (int i = 0; i < crafts.length; i++) {
+      crafts[i].update();
+      crafts[i].show();
     }
 }
