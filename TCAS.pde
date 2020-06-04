@@ -94,6 +94,12 @@ void draw(){
     stroke(0,204,0);
     dash.line(399, 470, 399,100);
     
+    //Movimiento Aeronaves y muestra de las mismas.
+    for (int i = 0; i < crafts.length; i++) {
+      crafts[i].update();
+      crafts[i].show();
+    }
+    
     //Compass
     stroke(255);
     translate(width/2,500);
@@ -113,9 +119,5 @@ void draw(){
     rect(-400,-800,135,1000);
     rect(261,-800,800,1000);
     
-    //Movimiento Aeronaves y muestra de las mismas.
-    for (int i = 0; i < crafts.length; i++) {
-      crafts[i].update();
-      crafts[i].show();
-    }
+    
 }
