@@ -100,7 +100,7 @@ void draw(){
       crafts[i].show();
     }
     
-    //Compass
+    //Compass  
     stroke(255);
     strokeWeight(1.5);
     translate(width/2,500);

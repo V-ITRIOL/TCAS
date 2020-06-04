@@ -29,25 +29,25 @@ class Aircraft {
       noFill();
       stroke(255);
       strokeWeight(0.5);
-      quad(x, y, x+5, y+8, x+10, y, x+5, y-8);
+      quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
     }
     if (distance <= 300 && distance > 200 && y < 520) {
       fill(255);
       stroke(255);
       strokeWeight(0.5);
-      quad(x, y, x+5, y+8, x+10, y, x+5, y-8);
+      quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
     }
     if (distance <= 200 && distance > 100 && y < 520) {
       fill(yellow);
       stroke(yellow);
       strokeWeight(0.5);
-      circle(x, y, 10);
+      circle(x+8, y, 16);
     }
     if (distance < 100 && y < 520) {
       fill(red);
       stroke(red);
       strokeWeight(0.5);
-      rect(x, y, 10, 10);
+      rect(x, y-8, 16, 16);
     }
   }
 }
