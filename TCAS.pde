@@ -102,6 +102,7 @@ void draw(){
     
     //Compass
     stroke(255);
+    strokeWeight(1.5);
     translate(width/2,500);
     for (float angle=0; angle<TWO_PI; angle+=angleStep){
       rotate(angleStep);
@@ -113,11 +114,14 @@ void draw(){
       }
       longStroke=!longStroke;
     }
+    
     //Rectángulos negros
     fill(0);
     noStroke();
     rect(-400,-800,135,1000);
     rect(261,-800,800,1000);
-    
+    //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
+    translate(-width/2,-500);
+    rect(0,611,800,800);
     
 }
