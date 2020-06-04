@@ -8,7 +8,7 @@ float r1=600, r2=400,r3=200, r4=800;
 void setup(){
     dash = new DashedLines(this);
     dash.pattern(5,10);
-    size(800,600);
+    size(800, 800);
     background(0);
     strokeWeight(1.5);
     for (int i = 0; i < crafts.length; i++) {
@@ -44,7 +44,6 @@ void draw(){
     text("NM", 220, 580);
     text("NM", 560, 575);
     
-    //float chordl;
     int radi=200, radf=340;
     float angleStep=HALF_PI/20;
     boolean longStroke=false;
@@ -57,8 +56,8 @@ void draw(){
     dash.arc(width/2, 500, r2, 400, radians(radi),radians(radf));
     dash.arc(width/2, 500, r3, 200, radians(radi),radians(radf));
     
-    //chordl=2*100*sin(140/2);
-    rect(135, 40, 525,550); 
+    //recuadro TCAS
+    rect(135, 10, 525,600); 
     
     //AVION PROPIO
     noStroke();
@@ -108,6 +107,7 @@ void draw(){
       }
       longStroke=!longStroke;
     }
+    
     
     //Movimiento Aeronaves y muestra de las mismas.
     for (int i = 0; i < crafts.length; i++) {
