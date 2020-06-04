@@ -11,9 +11,44 @@ void setup(){
 }
 
 void draw(){
+  
+<<<<<<< HEAD
+  //TEXTO BLANCO
+    noStroke();
+    fill(255,255,255);
+    rect(220,557,14,3);
+    rect(538,557,14,3);
+=======
+    //TEXTO BLANCO
+    noStroke();
+    fill(255,255,255);
+    rect(220,557,14,3);
+>>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
+    PFont font, font2;
+    font = createFont("SansSerif", 19);
+    textFont(font);
+    text("VOR1", 172, 533);
+<<<<<<< HEAD
+    text("VOR2", 555, 533);
+    text("POL", 160, 555);
+    text("INT", 560, 555);
+    font2 = createFont("SansSerif", 16);
+    textFont(font2);
+    text("M", 220, 555);
+    text("M", 538, 555);
+=======
+    text("VOR2", 625, 533);
+    text("POL", 160, 555);
+    font2 = createFont("SansSerif", 16);
+    textFont(font2);
+    text("M", 220, 555);
+>>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
+    fill(51,204,255);
+    text("NM", 220, 580);
+    
     //float chordl;
     int radi=200, radf=340;
-    float angleStep=HALF_PI/10;
+    float angleStep=HALF_PI/20;
     boolean longStroke=false;
     
     //Arcs
@@ -42,7 +77,20 @@ void draw(){
     noFill();
     triangle(140,535,170,535,155,515);
     
+<<<<<<< HEAD
     
+    //FLECHA DERECHA
+    noStroke();
+    fill(255,255,255);
+    rect(625,560,3,-25);
+    rect(638,560,3,-25);
+    stroke(255);
+    line(612, 535, 625, 535);
+    line(639, 535, 652, 535);
+    line(612, 535, 634, 510);
+    line(652, 535, 634, 510);
+=======
+>>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
     //LINEA VERDE
     noStroke();
     fill(0,204,0);
@@ -50,35 +98,25 @@ void draw(){
     //LINEA PUNTEADA VERDE
     stroke(0,204,0);
     dash.line(399, 470, 399,100);
+<<<<<<< HEAD
 
 
-  //TEXTO BLANCO
-    noStroke();
-    fill(255,255,255);
-    rect(220,557,14,3);
-    PFont font, font2;
-    font = createFont("SansSerif", 19);
-    textFont(font);
-    text("VOR1", 172, 533);
-    text("VOR2", 625, 533);
-    text("POL", 160, 555);
-    font2 = createFont("SansSerif", 16);
-    textFont(font2);
-    text("M", 220, 555);
-    fill(51,204,255);
-    text("NM", 220, 580);
+  
+=======
+>>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
     
     //Compass
-    translate(radians(220),200);
-    for (float angle=radians(220); angle<radians(330); angle+=angleStep){
+    stroke(255);
+    translate(width/2,500);
+    for (float angle=0; angle<TWO_PI; angle+=angleStep){
       rotate(angleStep);
       if (longStroke){
-        line(0,-200,0,-180);
+        line(0,-400,0,-420);
       }
       else{
-        line(0, -190,0,-180);
+        line(0, -400,0,-410);
       }
       longStroke=!longStroke;
     }
-
+ 
 }
