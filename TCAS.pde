@@ -27,7 +27,6 @@ void draw(){
     font = createFont("SansSerif", 19);
     textFont(font);
     text("VOR1", 172, 533);
-
     text("VOR2", 555, 533);
     text("POL", 160, 555);
     text("INT", 560, 555);
@@ -90,14 +89,15 @@ void draw(){
     dash.line(399, 470, 399,100);
     
     //Compass
-    translate(radians(220),200);
-    for (float angle=radians(220); angle<radians(330); angle+=angleStep){
+    stroke(255);
+    translate(width/2,500);
+    for (float angle=0; angle<TWO_PI; angle+=angleStep){
       rotate(angleStep);
       if (longStroke){
-        line(0,-200,0,-180);
+        line(0,-400,0,-420);
       }
       else{
-        line(0, -190,0,-180);
+        line(0, -400,0,-410);
       }
       longStroke=!longStroke;
     }
