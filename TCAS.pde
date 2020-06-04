@@ -51,17 +51,22 @@ void draw(){
     stroke(0,204,0);
     dash.line(399, 470, 399,100);
 
-    //RECTANGULO GPS PRIMARY
-    stroke(255);
-    noFill();
-    rect(230,540,340,20);
 
-    //TEXTO GPS PRIMARY
+  //TEXTO BLANCO
+    noStroke();
     fill(255,255,255);
-    PFont font;
-    font = createFont("SansSerif", 17);
+    rect(220,557,14,3);
+    PFont font, font2;
+    font = createFont("SansSerif", 19);
     textFont(font);
-    text("GPS PRIMARY", 335, 557);
+    text("VOR1", 172, 533);
+    text("VOR2", 625, 533);
+    text("POL", 160, 555);
+    font2 = createFont("SansSerif", 16);
+    textFont(font2);
+    text("M", 220, 555);
+    fill(51,204,255);
+    text("NM", 220, 580);
     
     //Compass
     translate(radians(220),200);
