@@ -1,7 +1,6 @@
 class Aircraft {
   float x;
   float y;
-  float z;
   float velx;
   float vely;
   
