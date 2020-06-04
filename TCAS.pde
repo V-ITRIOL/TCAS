@@ -35,12 +35,6 @@ void draw(){
     textFont(font2);
     text("M", 220, 555);
     text("M", 538, 555);
-
-    text("VOR2", 625, 533);
-    text("POL", 160, 555);
-    font2 = createFont("SansSerif", 16);
-    textFont(font2);
-    text("M", 220, 555);
     fill(51,204,255);
     text("NM", 220, 580);
     
@@ -93,20 +87,18 @@ void draw(){
     
     //LINEA PUNTEADA VERDE
     stroke(0,204,0);
-    dash.line(399, 470, 399,100)
+    dash.line(399, 470, 399,100);
     
     //Compass
-    stroke(255);
-    translate(width/2,500);
-    for (float angle=0; angle<TWO_PI; angle+=angleStep){
+    translate(radians(220),200);
+    for (float angle=radians(220); angle<radians(330); angle+=angleStep){
       rotate(angleStep);
       if (longStroke){
-        line(0,-400,0,-420);
+        line(0,-200,0,-180);
       }
       else{
-        line(0, -400,0,-410);
+        line(0, -190,0,-180);
       }
       longStroke=!longStroke;
     }
- 
 }
