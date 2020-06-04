@@ -9,9 +9,12 @@ class Aircraft {
   }
   
   void update() {
-  
+    
   }
   
   void show() {
+    fill(255);
+    stroke(255);
+    quad(x, y, x+5, y+5, x+10, y, x+5, y-5);
   }
 }
