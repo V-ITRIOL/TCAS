@@ -3,14 +3,21 @@ class Aircraft {
   float y;
   float velx;
   float vely;
+  float deg;
   
-  Aircraft() {
-    x = random(width/2 - 400*cos(radians(49)), width/2 - 400*cos(radians(132)));
-    y = random(500 - 400*sin(radians(49)), 500 - 400*sin(radians(132)));
+  Aircraft(float pos, float vx, float vy) {
+    
+    deg = map(pos, 0, 1, 49, 132);
+    x = width/2 - 400*cos(radians(deg));
+    y = 500 - 400*sin(radians(deg));
+
+    velx = vx;
+    vely = vy;
   }
   
   void update() {
-    y = y + 1;
+    x = x + velx;
+    y = y + vely;
   }
   
   void show() {

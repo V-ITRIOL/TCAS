@@ -1,5 +1,5 @@
 //Arreglo que contiene las aeronaves.
-Aircraft[] crafts = new Aircraft[100];
+Aircraft[] crafts = new Aircraft[20];
 
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
@@ -10,7 +10,7 @@ void setup(){
     dash.pattern(5,10);
     size(800, 800);
     for (int i = 0; i < crafts.length; i++) {
-      crafts[i] = new Aircraft();
+      crafts[i] = new Aircraft(random(0, 1), random(-0.7, 0.5), random(0.1, 0.5));
     }
 }
 
