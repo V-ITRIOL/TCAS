@@ -1,12 +1,5 @@
 class Aircraft {
-  float x;
-  float y;
-  float velx;
-  float vely;
-  float deg;
-  float distance;
-  float timex;
-  float timey;
+  float x, y, velX, velY, deg, distance, timeX, timeY, velUserX, velUserY;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
   
@@ -16,16 +9,47 @@ class Aircraft {
     x = width/2 - 400*cos(radians(deg));
     y = -10 + 500 - 400*sin(radians(deg));
 
-    velx = vx;
-    vely = vy;
+    velX = vx;
+    velY = vy;
+    
+    velUserY = 0;
+    velUserX = 0;
   }
   
   void update() {
-    x = x + velx;
-    y = y + vely;
+    //User input
+    if (keyPressed) {
+      switch (key) {
+        case 'w':
+        case 'W':
+          velUserY = velUserY - 1;
+          break;
+        case 's':
+        case 'S':
+          velUserY = velUserY + 1;
+          break;
+        case 'd':
+        case 'D':
+          velUserX = velUserX + 1;
+          break;
+        case 'a':
+        case 'A':
+          velUserX = velUserX - 1;
+          break;
+        default:
+          break;
+      }
+    }
+    
+    // Calculations and updates
+    x = x + velX + velUserX;
+    y = y + velY + velUserY;
     distance = dist(x, y, width/2, 500);
-    timex = distance/velx;
-    timey = distance/vely;
+    timeX = distance/velX;
+    timeY = distance/velY;
+    
+    velUserX = 0;
+    velUserY = 0;
   }
   
   void show() {
