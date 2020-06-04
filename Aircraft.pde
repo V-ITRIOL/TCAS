@@ -13,8 +13,9 @@ class Aircraft {
   }
   
   void show() {
-    fill(255);
+    noFill();
     stroke(255);
-    quad(x, y, x+5, y+7, x+10, y, x+5, y-7);
+    strokeWeight(0.5);
+    quad(x, y, x+5, y+8, x+10, y, x+5, y-8);
   }
 }
