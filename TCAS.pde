@@ -51,7 +51,7 @@ void draw(){
     //Arcs
     stroke(255);
     noFill();
-    arc(width/2, 500, r4, 800, radians(229),radians(310));
+    arc(width/2, 500, r4, 800, radians(228),radians(311));
     dash.arc(width/2, 500, r1, 600, radians(210),radians(330));
     dash.arc(width/2, 500, r2, 400, radians(radi),radians(radf));
     dash.arc(width/2, 500, r3, 200, radians(radi),radians(radf));

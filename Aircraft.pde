@@ -6,7 +6,7 @@ class Aircraft {
   
   Aircraft() {
     x = random(135, 660);
-    y = 10;
+    y = 500 - sin(PI);
   }
   
   void update() {
