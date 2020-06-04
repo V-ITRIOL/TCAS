@@ -42,6 +42,7 @@ void draw(){
     text("M", 538, 555);
     fill(51,204,255);
     text("NM", 220, 580);
+    text("NM", 560, 575);
     
     //float chordl;
     int radi=200, radf=340;
