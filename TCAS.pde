@@ -1,5 +1,5 @@
 //Arreglo que contiene las aeronaves.
-Aircraft[] crafts = new Aircraft[2];
+Aircraft[] crafts = new Aircraft[100];
 
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;

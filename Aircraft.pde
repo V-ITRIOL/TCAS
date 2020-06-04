@@ -5,12 +5,12 @@ class Aircraft {
   float vely;
   
   Aircraft() {
-    x = random(135, 660);
-    y = 500 - sin(PI);
+    x = random(width/2 - 400*cos(radians(49)), width/2 - 400*cos(radians(132)));
+    y = random(500 - 400*sin(radians(49)), 500 - 400*sin(radians(132)));
   }
   
   void update() {
-    y = y + 5;
+    y = y + 1;
   }
   
   void show() {
