@@ -9,7 +9,6 @@ void setup(){
     dash = new DashedLines(this);
     dash.pattern(5,10);
     size(800, 800);
-    background(0);
     strokeWeight(1.5);
     for (int i = 0; i < crafts.length; i++) {
       crafts[i] = new Aircraft();
@@ -17,7 +16,9 @@ void setup(){
 }
 
 void draw(){
-
+    //DEJAR EL BACKGROUND AQUI SINO LOS MATO
+    background(0);
+    
   //TEXTO BLANCO
     noStroke();
     fill(255,255,255);
