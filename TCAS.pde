@@ -41,4 +41,11 @@ void draw(){
     noFill();
     rect(230,470,340,20);
 
+    //TEXTO GPS PRIMARY
+    fill(255,255,255);
+    PFont font;
+    font = createFont("SansSerif", 17);
+    textFont(font);
+    text("GPS PRIMARY", 335, 486);
+
 }
