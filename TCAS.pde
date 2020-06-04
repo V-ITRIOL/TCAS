@@ -29,22 +29,32 @@ void draw(){
     rect(394,505,16,4);
     rect(400,83,4,35);
     
-    //VERDE
+    //FLECHA BLANCA
+    fill(255,255,255);
+    rect(153,560,3,-25);
+    stroke(255);
+    noFill();
+    triangle(140,535,170,535,155,515);
+    
+    
+    //LINEA VERDE
+    noStroke();
     fill(0,204,0);
     rect(400,470,2,-370);
+    //LINEA PUNTEADA VERDE
     stroke(0,204,0);
     dash.line(399, 470, 399,100);
 
     //RECTANGULO GPS PRIMARY
     stroke(255);
     noFill();
-    rect(230,520,340,20);
+    rect(230,540,340,20);
 
     //TEXTO GPS PRIMARY
     fill(255,255,255);
     PFont font;
     font = createFont("SansSerif", 17);
     textFont(font);
-    text("GPS PRIMARY", 335, 537);
+    text("GPS PRIMARY", 335, 557);
 
 }
