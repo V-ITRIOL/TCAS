@@ -63,6 +63,7 @@ void draw(){
     noStroke();
     fill(0,204,0);
     rect(400,470,2,-370);
+    
     //LINEA PUNTEADA VERDE
     stroke(0,204,0);
     dash.line(399, 470, 399,100);
