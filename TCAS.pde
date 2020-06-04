@@ -11,24 +11,23 @@ void setup(){
 }
 
 void draw(){
-  
-<<<<<<< HEAD
+
   //TEXTO BLANCO
     noStroke();
     fill(255,255,255);
     rect(220,557,14,3);
     rect(538,557,14,3);
-=======
+    
     //TEXTO BLANCO
     noStroke();
     fill(255,255,255);
     rect(220,557,14,3);
->>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
+
     PFont font, font2;
     font = createFont("SansSerif", 19);
     textFont(font);
     text("VOR1", 172, 533);
-<<<<<<< HEAD
+
     text("VOR2", 555, 533);
     text("POL", 160, 555);
     text("INT", 560, 555);
@@ -36,13 +35,12 @@ void draw(){
     textFont(font2);
     text("M", 220, 555);
     text("M", 538, 555);
-=======
+
     text("VOR2", 625, 533);
     text("POL", 160, 555);
     font2 = createFont("SansSerif", 16);
     textFont(font2);
     text("M", 220, 555);
->>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
     fill(51,204,255);
     text("NM", 220, 580);
     
@@ -76,8 +74,7 @@ void draw(){
     stroke(255);
     noFill();
     triangle(140,535,170,535,155,515);
-    
-<<<<<<< HEAD
+   
     
     //FLECHA DERECHA
     noStroke();
@@ -89,21 +86,14 @@ void draw(){
     line(639, 535, 652, 535);
     line(612, 535, 634, 510);
     line(652, 535, 634, 510);
-=======
->>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
     //LINEA VERDE
     noStroke();
     fill(0,204,0);
     rect(400,470,2,-370);
+    
     //LINEA PUNTEADA VERDE
     stroke(0,204,0);
-    dash.line(399, 470, 399,100);
-<<<<<<< HEAD
-
-
-  
-=======
->>>>>>> 24a7eeab01923e289bafa2925b9fd1690817205c
+    dash.line(399, 470, 399,100)
     
     //Compass
     stroke(255);
