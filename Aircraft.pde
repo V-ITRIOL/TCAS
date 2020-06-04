@@ -25,25 +25,25 @@ class Aircraft {
   }
   
   void show() {
-    if (distance < 400 && distance > 300 && y < 520) {
+    if (distance < 400 && distance > 300 && y < 510) {
       noFill();
       stroke(255);
       strokeWeight(0.5);
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
     }
-    if (distance <= 300 && distance > 200 && y < 520) {
+    if (distance <= 300 && distance > 200 && y < 510) {
       fill(255);
       stroke(255);
       strokeWeight(0.5);
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
     }
-    if (distance <= 200 && distance > 100 && y < 520) {
+    if (distance <= 200 && distance > 100 && y < 510) {
       fill(yellow);
       stroke(yellow);
       strokeWeight(0.5);
       circle(x+8, y, 16);
     }
-    if (distance < 100 && y < 520) {
+    if (distance < 100 && y < 510) {
       fill(red);
       stroke(red);
       strokeWeight(0.5);
