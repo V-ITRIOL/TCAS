@@ -45,7 +45,7 @@ void draw(){
     text("NM", 560, 575);
     
     int radi=200, radf=340;
-    float angleStep=HALF_PI/20;
+    float angleStep=HALF_PI/10;
     boolean longStroke=false;
     
     //Arcs
