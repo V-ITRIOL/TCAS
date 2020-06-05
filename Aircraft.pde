@@ -3,7 +3,7 @@ class Aircraft {
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
   
-  Aircraft(float pos, float vx, float vy) {
+  Aircraft(float pos, float vx, float vy, float vz) {
     
     deg = map(pos, 0, 1, 49, 132);
     x = width/2 - 400*cos(radians(deg));
