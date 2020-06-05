@@ -6,7 +6,12 @@ DashedLines dash;
 float r1=600, r2=400,r3=200, r4=800;
 float turnRate = 1;
 float rotation;
-
+float winds=15;
+int mi=millis();
+int m = minute();
+int h = hour();
+String sm= str(m);
+String sh= str(h);
 
 void setup(){
     dash = new DashedLines(this);
@@ -46,24 +51,32 @@ void draw(){
     text("INT", 560, 555);
     text("POL", 547, 10);
     text("/", 175, 30);
-    
     fill(0,204,0);
     text("326", 165, 10);
     text("330", 245, 10);
-    text("351°", 590, 10);
-    text("292", 140, 30);
-    text("5", 210, 30);
+    
+    //Grados compass
+    text(360-int(degrees(rotation))+"°", 590, 10);
+    //text("292", 140, 30);
+    
+    //Windspeed
+    if (millis()>mi+1000){
+      winds += random(-2,2);
+      mi=millis();
+    }
+    
+    String swind= str(int(winds));
+    text(swind, 210, 30);
+    
+    
     text("30", 575, 30);
     text("30", 180, 580);
     text("14.7", 520, 580);
+    
     //Timer
     PFont ftimer;
     ftimer = createFont("SansSerif", 19);
     textFont(ftimer);
-    int m = minute();  // Values from 0 - 59
-    int h = hour();    // Values from 0 - 23
-    String sm= str(m);
-    String sh= str(h);
     text(sh,580,50);
     text(":",604, 50);
     text(sm,612,50);
