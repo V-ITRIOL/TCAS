@@ -8,8 +8,14 @@ import processing.sound.*;
 SoundFile traffic;
 
 float r1=600, r2=400,r3=200, r4=800;
-float turnRate = 1;
+
 float rotation;
+float degreeDiff;
+float degreeIn = 0;
+float degreeUser = 0;
+float degreeTotal = 0;
+int f2;
+
 float windSpeed=15;
 float heightIn=30000;
 float heightOut=0;
@@ -39,13 +45,52 @@ void setup(){
 
 void draw(){
     //Cálculo de los ángulos en rotation:
-    rotation = radians(map(mouseX, 0, width, 0, 360*turnRate));
+    if (keyPressed) {
+      switch (key) {
+        case 'j':
+        case 'J':
+          degreeUser = 1/60.0;
+          f2 = -1;
+          break;
+        case 'l':
+        case 'L':
+          degreeUser = -1/60.0;
+          f2 = -1;
+          break;
+        default:
+          break;
+      }
+    }
+    degreeDiff = degreeDiff + degreeUser;
+    degreeTotal = degreeTotal + degreeIn + degreeDiff;
     
+    if (f2 == 0 && degreeDiff > 0) {
+      degreeDiff = degreeDiff - 1/60.0;
+      if (abs(degreeDiff) < 0.01) {
+        degreeDiff = 0;
+      }
+    } else if (f2 == 0 && degreeDiff < 0) {
+      degreeDiff = degreeDiff + 1/60.0;
+      if (abs(degreeDiff) < 0.01) {
+        degreeDiff = 0;
+      }
+    }
+    
+    if (degreeTotal > 360) {
+      degreeTotal = degreeTotal - 360;
+    } else if (degreeTotal < 0) {
+      degreeTotal = degreeTotal + 360;
+    }
+    
+    rotation = radians(degreeTotal);
+    f2 = 0;
+    degreeUser = 0;
     translate(0, 30);
     
     //DEJAR EL BACKGROUND AQUI SINO LOS MATO
     background(0);
     strokeWeight(1.5);
+    
     //TEXTO BLANCO
     noStroke();
     fill(255,255,255);
@@ -232,9 +277,15 @@ void draw(){
         if (longStroke) {
           line(0, -400, 0, -420);      
           if(grades<72){
-            String sg= str(grades/2);
-            fill(255);
-            text(sg,-8,-435);
+            if ((grades+1)/2 == 36) {
+              String sg= "0";
+              fill(255);
+              text(sg,-8,-435);
+            } else {
+              String sg= str((grades+1)/2);
+              fill(255);
+              text(sg,-8,-435);
+            }
           }
         } 
         else {
