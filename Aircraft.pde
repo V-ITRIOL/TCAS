@@ -1,5 +1,5 @@
 class Aircraft {
-  float x, y, velX, velY, deg, distance, timeX, timeY, velUserX, velUserY;
+  float x, y, z, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
   
@@ -8,12 +8,15 @@ class Aircraft {
     deg = map(pos, 0, 1, 49, 132);
     x = width/2 - 400*cos(radians(deg));
     y = -10 + 500 - 400*sin(radians(deg));
+    z = 0;
 
     velX = vx;
     velY = vy;
+    velZ = vz;
     
     velUserY = 0;
     velUserX = 0;
+    velUserZ = 0;
   }
   
   void update() {
@@ -36,6 +39,12 @@ class Aircraft {
         case 'A':
           velUserX = velUserX - 1;
           break;
+        case ' ':
+          velUserZ = velUserZ + 1;
+          break;
+        case 'x':
+        case 'X':
+          velUserZ = velUserZ - 1;
         default:
           break;
       }
@@ -44,12 +53,16 @@ class Aircraft {
     // Calculations and updates
     x = x + velX + velUserX;
     y = y + velY + velUserY;
+    z = z + velZ + velUserZ;
     distance = dist(x, y, width/2, 500);
     timeX = distance/velX;
     timeY = distance/velY;
     
+    println(z);
+    
     velUserX = 0;
     velUserY = 0;
+    velUserZ = 0;
   }
   
   void show() {
@@ -61,27 +74,47 @@ class Aircraft {
       stroke(255);
       strokeWeight(0.5);
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
+      if (z > 0) {
+        text("↑" + str(z), x, y + 20);
+      } else {
+        text("↓" + str(z), x, y + 20);
+      }
     }
     if (distance <= 300 && distance > 200 && y < 510) {
       fill(255);
       stroke(255);
       strokeWeight(0.5);
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
-      text(str(distance), x + 20, y + 5);
+      //text(str(distance), x + 20, y + 5);
+      if (z > 0) {
+        text("↑" + str(z), x, y + 20);
+      } else {
+        text("↓" + str(z), x, y + 20);
+      }
     }
     if (distance <= 200 && distance > 100 && y < 510) {
       fill(yellow);
       stroke(yellow);
       strokeWeight(0.5);
       circle(x+8, y, 16);
-      text(str(distance), x + 20, y + 5);
+      //text(str(distance), x + 20, y + 5);
+      if (z > 0) {
+        text("↑" + str(z), x, y + 20);
+      } else {
+        text("↓" + str(z), x, y + 20);
+      }
     }
     if (distance < 100 && y < 510) {
       fill(red);
       stroke(red);
       strokeWeight(0.5);
       rect(x, y-8, 16, 16);
-      text(str(distance), x + 20, y + 5);
+      //text(str(distance), x + 20, y + 5);
+      if (z > 0) {
+        text("↑" + str(z), x, y + 20);
+      } else {
+        text("↓" + str(z), x, y + 20);
+      }
     }
   }
 }
