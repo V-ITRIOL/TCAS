@@ -166,9 +166,7 @@ void draw(){
     text(int(groundSpeedOut), 170, 10);
     text(int(airSpeedOut), 250, 10);
     
-    airSpeedUser = 0;
-    verSpeedUser = 0;
-    f1 = 0;
+    
     
     
     //NM VOR 1 Y VOR 2
@@ -308,4 +306,9 @@ void draw(){
     //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
     translate(-width/2, -500);
     rect(0, 611, 800, 800);
+    
+    airSpeedUser = 0;
+    verSpeedUser = 0;
+    f1 = 0;
+    
 }

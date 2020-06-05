@@ -44,11 +44,11 @@ class Aircraft {
           velUserX = velUserX - 1;
           break;
         case ' ':
-          velUserZ = velUserZ + 15.0;
+          velUserZ = 15.0;
           break;
         case 'x':
         case 'X':
-          velUserZ = velUserZ - 15.0;
+          velUserZ = -15.0;
         default:
           break;
       }
@@ -59,8 +59,8 @@ class Aircraft {
     y = y + velY + velUserY;
     
     // grasiosada aki abajo
-    velZTotal = velZTotal + velZ + velUserZ/60.0;
-    z = z + velZTotal; // feet
+    velZTotal = velZ + velUserZ/60.0;
+    z = z + velZTotal - (verSpeedUser/60.0); // feet
     zDisplay = z/100.0; // feet x 10e2
     
     distance = dist(x, y, width/2, 500); // en pixeles
@@ -118,10 +118,11 @@ class Aircraft {
           text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
+      
       //Arrow velocity
       if (velZTotal > 0) {
         text("↑", x + 16, y + 10);
-      } else {
+      } else if (velZTotal < 0){
         text("↓", x + 16, y + 8);
       }
       
@@ -166,10 +167,11 @@ class Aircraft {
           text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
-      //Arror velocity
+      
+      //Arrow velocity
       if (velZTotal > 0) {
         text("↑", x + 16, y + 10);
-      } else {
+      } else if (velZTotal < 0){
         text("↓", x + 16, y + 8);
       }
       
@@ -205,10 +207,11 @@ class Aircraft {
           text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
-      //Arror velocity
+      
+      //Arrow velocity
       if (velZTotal > 0) {
         text("↑", x + 16, y + 10);
-      } else {
+      } else if (velZTotal < 0){
         text("↓", x + 16, y + 8);
       }
       
@@ -243,10 +246,11 @@ class Aircraft {
           text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
-      //Arror velocity
+      
+      //Arrow velocity
       if (velZTotal > 0) {
         text("↑", x + 16, y + 10);
-      } else {
+      } else if (velZTotal < 0){
         text("↓", x + 16, y + 8);
       }
       
