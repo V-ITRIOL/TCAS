@@ -49,7 +49,18 @@ void draw(){
     text("30", 575, 30);
     text("30", 180, 580);
     text("14.7", 520, 580);
-    text("13:05", 600, 50);
+    //Timer
+    PFont ftimer;
+    ftimer = createFont("SansSerif", 19);
+    textFont(ftimer);
+    int m = minute();  // Values from 0 - 59
+    int h = hour();    // Values from 0 - 23
+    String sm= str(m);
+    String sh= str(h);
+    text(sh,580,50);
+    text(":",604, 50);
+    text(sm,612,50);
+    
     font2 = createFont("SansSerif", 16);
     textFont(font2);
     fill(255,255,255);
