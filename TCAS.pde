@@ -10,7 +10,15 @@ SoundFile traffic;
 float r1=600, r2=400,r3=200, r4=800;
 float turnRate = 1;
 float rotation;
-float winds=15;
+float windSpeed=15;
+float heightIn=30000;
+float heightOut=0;
+float groundSpeedOut=0;
+float VerSpeedOut=0;
+float VerSpeedUser=0;
+float airSpeedIn=340;
+float airSpeedOut=0;
+float airSpeedUser;
 int mi=millis();
 int m = minute();
 int h = hour();
@@ -66,11 +74,35 @@ void draw(){
     
     //Windspeed
     if (millis()>mi+1000){
-      winds += random(-2,2);
+      windSpeed += random(-2,2);
       mi=millis();
     }
     
-    String swind= str(int(winds));
+    //ALTURA DEL AVIÓN PROPIO Y VELOCIDADES
+    if (keyPressed){
+      switch(key) {
+        case 'i':
+        case 'I':
+        VerSpeedUser=VerSpeedUser+20;//20 ft/s
+        airSpeedUser=airSpeedUser-5;
+        break;
+        case 'k':
+        case 'K':
+        VerSpeedUser=VerSpeedUser-20;//-20 ft/s
+        airSpeedUser=airSpeedUser+5;
+        break;
+      }
+    }
+    VerSpeedOut=VerSpeedOut+(VerSpeedUser/60);
+    airSpeedOut=airSpeedIn+(airSpeedUser/60);
+    heightOut=heightIn+VerSpeedOut;
+    groundSpeedOut=airSpeedOut-windSpeed;
+
+    println(heightOut + " " +VerSpeedOut+" "+ airSpeedOut + " "+groundSpeedOut);
+    VerSpeedUser=0;
+    airSpeedUser=0;
+    
+    String swind= str(int(windSpeed));
     text(swind, 210, 30);
     
     
