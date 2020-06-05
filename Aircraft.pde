@@ -2,7 +2,7 @@ class Aircraft {
   float x, y, z, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velZTotal;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
-  int flagTraffic = 0;
+  int flagTraffic = -1, flagClear = -1;
   
   Aircraft(float pos, float vx, float vy, float vz) {
     
@@ -74,8 +74,17 @@ class Aircraft {
     PFont data;
     data = createFont("SansSerif", 15);
     textFont(data);
+    
+    
     //Diamantes próximos
+    
     if (distance < 400 && distance > 300 && y < 510) {
+      //Clear of conflict cuando ya no haya naves próximas
+        if (flagClear == 0) {
+        clear.play();
+        flagClear = 1;
+      }
+      
       noFill();
       stroke(255);
       strokeWeight(0.5);
@@ -112,11 +121,15 @@ class Aircraft {
       flagTraffic = 0;
     }
     
+    
+    
     //Diamantes Rellenos (TRAFICO)
+    
+    
     if (distance <= 300 && distance > 200 && y < 510) {
       if (flagTraffic == 0) {
         traffic.play();
-        flagTraffic = -1;
+        flagTraffic = 1;
       }
       
       fill(255);
@@ -153,6 +166,7 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
+      flagClear = 0;
     }
     
     

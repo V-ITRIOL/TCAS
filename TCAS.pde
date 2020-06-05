@@ -5,7 +5,7 @@ import garciadelcastillo.dashedlines.*;
 DashedLines dash;
 
 import processing.sound.*;
-SoundFile traffic;
+SoundFile traffic, clear;
 
 float r1=600, r2=400,r3=200, r4=800;
 
@@ -27,6 +27,7 @@ float airSpeedOut=0;
 float airSpeedUser=0;
 float airSpeedDiff= 0; 
 int f1=0;
+
 int mi=millis();
 int m = minute();
 int h = hour();
@@ -41,6 +42,7 @@ void setup(){
       crafts[i] = new Aircraft(random(0, 1), 0, 0.05, 0);
     }
     traffic = new SoundFile(this, "traffic.wav");
+    clear = new SoundFile(this, "clear.wav");
 }
 
 void draw(){
