@@ -2,11 +2,12 @@ class Aircraft {
   float x, y, z, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
+  int flagTraffic = 0;
   
   Aircraft(float pos, float vx, float vy, float vz) {
     
-    deg = map(pos, 0, 1, 0, 360);
-    //deg = map(pos, 0, 1, 49, 132);
+    //deg = map(pos, 0, 1, 0, 360);
+    deg = map(pos, 0, 1, 49, 132);
     x = width/2 - 400*cos(radians(deg));
     y = -10 + 500 - 400*sin(radians(deg));
     z = 0;
@@ -68,10 +69,10 @@ class Aircraft {
   
   void show() {
     
-    
     PFont data;
     data = createFont("SansSerif", 10);
     textFont(data);
+    //Diamantes próximos
     if (distance < 400 && distance > 300 && y < 510) {
       noFill();
       stroke(255);
@@ -89,8 +90,16 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
+      flagTraffic = 0;
     }
+    
+    //Diamantes Rellenos (TRAFICO)
     if (distance <= 300 && distance > 200 && y < 510) {
+      if (flagTraffic == 0) {
+        traffic.play();
+        flagTraffic = -1;
+      }
+      
       fill(255);
       stroke(255);
       strokeWeight(0.5);
@@ -109,6 +118,8 @@ class Aircraft {
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
+    
+    
     if (distance <= 200 && distance > 100 && y < 510) {
       fill(yellow);
       stroke(yellow);
@@ -128,6 +139,8 @@ class Aircraft {
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
+    
+    
     if (distance < 100 && y < 510) {
       fill(red);
       stroke(red);

@@ -1,8 +1,12 @@
 //Arreglo que contiene las aeronaves.
-Aircraft[] crafts = new Aircraft[50];
+Aircraft[] crafts = new Aircraft[2];
 
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
+
+import processing.sound.*;
+SoundFile traffic;
+
 float r1=600, r2=400,r3=200, r4=800;
 float turnRate = 1;
 float rotation;
@@ -20,6 +24,7 @@ void setup(){
     for (int i = 0; i < crafts.length; i++) {
       crafts[i] = new Aircraft(random(0, 1), 0, 0.05, 0);
     }
+    traffic = new SoundFile(this, "traffic.wav");
 }
 
 void draw(){
