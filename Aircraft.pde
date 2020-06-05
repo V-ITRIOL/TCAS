@@ -75,9 +75,9 @@ class Aircraft {
       strokeWeight(0.5);
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
       if (z > 0) {
-        text("↑" + str(z), x, y + 20);
+        text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
-        text("↓" + str(z), x, y + 20);
+        text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
     }
     if (distance <= 300 && distance > 200 && y < 510) {
@@ -87,9 +87,9 @@ class Aircraft {
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
       //text(str(distance), x + 20, y + 5);
       if (z > 0) {
-        text("↑" + str(z), x, y + 20);
+        text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
-        text("↓" + str(z), x, y + 20);
+        text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
     }
     if (distance <= 200 && distance > 100 && y < 510) {
@@ -99,9 +99,9 @@ class Aircraft {
       circle(x+8, y, 16);
       //text(str(distance), x + 20, y + 5);
       if (z > 0) {
-        text("↑" + str(z), x, y + 20);
+        text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
-        text("↓" + str(z), x, y + 20);
+        text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
     }
     if (distance < 100 && y < 510) {
@@ -111,9 +111,9 @@ class Aircraft {
       rect(x, y-8, 16, 16);
       //text(str(distance), x + 20, y + 5);
       if (z > 0) {
-        text("↑" + str(z), x, y + 20);
+        text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
-        text("↓" + str(z), x, y + 20);
+        text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
     }
   }
