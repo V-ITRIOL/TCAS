@@ -45,8 +45,6 @@ void draw(){
     text("NM", 560, 575);
     
     int radi=200, radf=340;
-    float angleStep=HALF_PI/10;
-    boolean longStroke=false;
     
     //Arcs
     stroke(255);
@@ -100,28 +98,52 @@ void draw(){
       crafts[i].show();
     }
     
-    //Compass  
+    //Compass
+    int grades=0;
+    float angleStep=radians(90)/18;
+    boolean longStroke=false;
+    PFont fontcomp;
+    fontcomp = createFont("SansSerif", 19);
+    textFont(fontcomp);
+    
+    
     stroke(255);
     strokeWeight(1.5);
-    translate(width/2,500);
-    for (float angle=0; angle<TWO_PI; angle+=angleStep){
+    translate(width/2, 500);
+    for (float angle=0; angle<TWO_PI; angle+=angleStep) {
       rotate(angleStep);
-      if (longStroke){
-        line(0,-400,0,-420);
-      }
-      else{
-        line(0, -400,0,-410);
-      }
-      longStroke=!longStroke;
+        if (longStroke) {
+          line(0, -400, 0, -420);
+          for (int i=0; i<=36; i++) {
+            grades++;
+            String sg= str(grades);
+            if(grades==36){
+              sg="0";
+            }
+            fill(255);
+            text(sg,-10,-430);
+            break;
+          }
+         
+        } 
+        else {
+          line(0, -400, 0, -410);
+        }
+        longStroke=!longStroke;
+       
     }
     
-    //Rectángulos negros
-    fill(0);
-    noStroke();
-    rect(-400,-800,135,1000);
-    rect(261,-800,800,1000);
-    //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
-    translate(-width/2,-500);
-    rect(0,611,800,800);
+   
+      
     
+  
+   //Rectángulos negros
+    fill(0);
+    rotate(-angleStep);
+    noStroke();
+    rect(-400, -800, 135, 1000);
+    rect(261, -800, 800, 1000);
+    //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
+    translate(-width/2, -500);
+    rect(0, 611, 800, 800);
 }
