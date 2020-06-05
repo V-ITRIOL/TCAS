@@ -14,12 +14,12 @@ float windSpeed=15;
 float heightIn=30000;
 float heightOut=0;
 float groundSpeedOut=0;
-float VerSpeedOut=0;
-float VerSpeedUser=0;
+float heightDiff=0;
+float verSpeedUser=0;
 float airSpeedIn=340;
 float airSpeedOut=0;
 float airSpeedUser=0;
-float airSpeedUser2= 0; 
+float airSpeedDiff= 0; 
 int f1=0;
 int mi=millis();
 int m = minute();
@@ -87,37 +87,41 @@ void draw(){
       switch(key) {
         case 'i':
         case 'I':
-        VerSpeedUser=VerSpeedUser+20;//20 ft/s
-        airSpeedUser=airSpeedUser-5;
-        f1=-1;
-        break;
+          verSpeedUser = 20.0;//20 ft/s
+          airSpeedUser = -5; // 5 nm/h
+          f1=-1;
+          break;
         case 'k':
         case 'K':
-        VerSpeedUser=VerSpeedUser-20;//-20 ft/s
-        airSpeedUser=airSpeedUser+5;
-        f1=-1;
+          verSpeedUser = -20.0;//-20 ft/s
+          airSpeedUser = 5; // 5 nm/h
+          f1=-1;
+          break;
+        default:
         break;
       }
     }
   
-    airSpeedUser2=airSpeedUser2+airSpeedUser;
-    VerSpeedOut=(VerSpeedUser/60);
-    airSpeedOut=airSpeedIn+(airSpeedUser2);
-    heightOut=heightIn+VerSpeedOut;
-    groundSpeedOut=airSpeedOut-windSpeed;
+    heightDiff = heightDiff + verSpeedUser/60.0;
+    heightOut = heightIn + heightDiff;
+    airSpeedDiff = airSpeedDiff + airSpeedUser/(60.0);
+    airSpeedOut = airSpeedIn + (airSpeedDiff);
+    groundSpeedOut = airSpeedOut - windSpeed;
+    
     
     
     if(airSpeedOut<340 && f1==0){      
-      airSpeedOut=airSpeedOut+5;
+      airSpeedDiff = airSpeedDiff + 5/(60.0);
     }
     else if(airSpeedOut>340 && f1==0){
-      airSpeedOut=airSpeedOut-5;
+      airSpeedDiff = airSpeedDiff - 5/(60.0);
     }
-    f1=0;
   
-    println(heightOut + " " +VerSpeedOut+" "+ airSpeedOut + " "+groundSpeedOut);
-    VerSpeedUser=0;
-    airSpeedUser=0;
+    println(heightOut + " " + verSpeedUser + " " + airSpeedOut + " " + groundSpeedOut);
+    
+    airSpeedUser = 0;
+    verSpeedUser = 0;
+    f1 = 0;
     
     
     //NM VOR 1 Y VOR 2
