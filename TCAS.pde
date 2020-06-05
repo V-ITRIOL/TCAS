@@ -87,13 +87,13 @@ void draw(){
       switch(key) {
         case 'i':
         case 'I':
-          verSpeedUser = 20.0;//20 ft/s
+          verSpeedUser = 15.0;//15 ft/s
           airSpeedUser = -5; // 5 nm/h
           f1=-1;
           break;
         case 'k':
         case 'K':
-          verSpeedUser = -20.0;//-20 ft/s
+          verSpeedUser = -15.0;//-15 ft/s
           airSpeedUser = 5; // 5 nm/h
           f1=-1;
           break;
@@ -101,14 +101,12 @@ void draw(){
         break;
       }
     }
-  
+    
     heightDiff = heightDiff + verSpeedUser/60.0;
     heightOut = heightIn + heightDiff;
     airSpeedDiff = airSpeedDiff + airSpeedUser/(60.0);
     airSpeedOut = airSpeedIn + (airSpeedDiff);
     groundSpeedOut = airSpeedOut - windSpeed;
-    
-    
     
     if(airSpeedOut<340 && f1==0){      
       airSpeedDiff = airSpeedDiff + 5/(60.0);
@@ -116,8 +114,10 @@ void draw(){
     else if(airSpeedOut>340 && f1==0){
       airSpeedDiff = airSpeedDiff - 5/(60.0);
     }
-  
-    println(heightOut + " " + verSpeedUser + " " + airSpeedOut + " " + groundSpeedOut);
+    
+    //IMPRESIÓN DE GS Y TAS
+    text(int(groundSpeedOut), 170, 10);
+    text(int(airSpeedOut), 250, 10);
     
     airSpeedUser = 0;
     verSpeedUser = 0;
@@ -215,6 +215,7 @@ void draw(){
     
     translate(width/2, 500);  //ROTACION COMPASS
     rotate(rotation);  //ROTACION COMPASS
+    
     //Compass
     int grades=0;
     float angleStep=radians(90)/18;
@@ -229,22 +230,18 @@ void draw(){
     for (float angle=0; angle<TWO_PI; angle+=angleStep) {
       rotate(angleStep);
         if (longStroke) {
-          line(0, -400, 0, -420);
-          for (int i=0; i<=36; i++) {
-            grades++;
-            String sg= str(grades);
-            if(grades==36){
-              sg="0";
-            }
+          line(0, -400, 0, -420);      
+          if(grades<72){
+            String sg= str(grades/2);
             fill(255);
             text(sg,-8,-435);
-            break;
-          }     
+          }
         } 
         else {
           line(0, -400, 0, -410);
         }
         longStroke=!longStroke;
+        grades++;
     }
    rotate(-rotation);  //FINAL ROTACION COMPASS
   
