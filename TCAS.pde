@@ -119,6 +119,10 @@ void draw(){
       crafts[i].show();
     }
     
+    translate(width/2, 500);
+    rotate(mouseX*0.008);
+    translate(-width/2, -500);
+    
     //Compass
     int grades=0;
     float angleStep=radians(90)/18;
@@ -150,6 +154,9 @@ void draw(){
         }
         longStroke=!longStroke;
     }
+   
+   rotate(-mouseX*0.008);
+  
   
    //Rectángulos negros
     fill(0);
