@@ -6,6 +6,7 @@ class Aircraft {
   Aircraft(float pos, float vx, float vy, float vz) {
     
     deg = map(pos, 0, 1, 0, 360);
+    //deg = map(pos, 0, 1, 49, 132);
     x = width/2 - 400*cos(radians(deg));
     y = -10 + 500 - 400*sin(radians(deg));
     z = 0;
@@ -66,6 +67,8 @@ class Aircraft {
   }
   
   void show() {
+    
+    
     PFont data;
     data = createFont("SansSerif", 10);
     textFont(data);
@@ -73,48 +76,79 @@ class Aircraft {
       noFill();
       stroke(255);
       strokeWeight(0.5);
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
+      
       if (z > 0) {
         text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     if (distance <= 300 && distance > 200 && y < 510) {
       fill(255);
       stroke(255);
       strokeWeight(0.5);
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
+      
       //text(str(distance), x + 20, y + 5);
       if (z > 0) {
         text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     if (distance <= 200 && distance > 100 && y < 510) {
       fill(yellow);
       stroke(yellow);
       strokeWeight(0.5);
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
       circle(x+8, y, 16);
+      
       //text(str(distance), x + 20, y + 5);
       if (z > 0) {
         text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     if (distance < 100 && y < 510) {
       fill(red);
       stroke(red);
       strokeWeight(0.5);
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
       rect(x, y-8, 16, 16);
+      
       //text(str(distance), x + 20, y + 5);
       if (z > 0) {
         text("↑" + nf(z, 0, 2), x - 8, y + 20);
       } else {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
+      translate((x + 8), y);  //ROTACION AERONAVES
+      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
+    
+    
+    
   }
 }
