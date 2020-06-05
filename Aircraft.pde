@@ -77,7 +77,7 @@ class Aircraft {
       stroke(255);
       strokeWeight(0.5);
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      rotate(-rotation);  //ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
       
@@ -87,7 +87,7 @@ class Aircraft {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     if (distance <= 300 && distance > 200 && y < 510) {
@@ -95,7 +95,7 @@ class Aircraft {
       stroke(255);
       strokeWeight(0.5);
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      rotate(-rotation);  //ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
       quad(x, y, x+8, y+10, x+16, y, x+8, y-10);
       
@@ -106,7 +106,7 @@ class Aircraft {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     if (distance <= 200 && distance > 100 && y < 510) {
@@ -114,7 +114,7 @@ class Aircraft {
       stroke(yellow);
       strokeWeight(0.5);
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      rotate(-rotation);  //ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
       circle(x+8, y, 16);
       
@@ -125,7 +125,7 @@ class Aircraft {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     if (distance < 100 && y < 510) {
@@ -133,7 +133,7 @@ class Aircraft {
       stroke(red);
       strokeWeight(0.5);
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(-mouseX*turnRate);  //ROTACION AERONAVES
+      rotate(-rotation);  //ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
       rect(x, y-8, 16, 16);
       
@@ -144,7 +144,7 @@ class Aircraft {
         text("↓" + nf(z, 0, 2), x - 8, y + 20);
       }
       translate((x + 8), y);  //ROTACION AERONAVES
-      rotate(mouseX*turnRate);  //FINAL ROTACION AERONAVES
+      rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
     }
     

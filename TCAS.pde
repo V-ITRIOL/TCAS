@@ -3,7 +3,10 @@ Aircraft[] crafts = new Aircraft[50];
 
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
-float r1=600, r2=400,r3=200, r4=800, turnRate=0.008;
+float r1=600, r2=400,r3=200, r4=800;
+float turnRate = 1;
+float rotation;
+
 
 void setup(){
     dash = new DashedLines(this);
@@ -15,7 +18,11 @@ void setup(){
 }
 
 void draw(){
+    //Cálculo de los ángulos en rotation:
+    rotation = radians(map(mouseX, 0, width, 0, 360*turnRate));
+    
     translate(0, 30);
+    
     //DEJAR EL BACKGROUND AQUI SINO LOS MATO
     background(0);
     strokeWeight(1.5);
@@ -125,7 +132,7 @@ void draw(){
     dash.line(399, 470, 399,100);
     
     translate(width/2, 500);  //ROTACION AERONAVES
-    rotate(mouseX*turnRate);  //ROTACION AERONAVES
+    rotate(rotation);  //ROTACION AERONAVES
     translate(-width/2, -500);  //ROTACION AERONAVES
     
     //Movimiento Aeronaves y muestra de las mismas.
@@ -134,11 +141,11 @@ void draw(){
       crafts[i].show();
     }
     
-    rotate(-mouseX*turnRate);  //FINAL ROTACION AERONAVES
+    rotate(-rotation);  //FINAL ROTACION AERONAVES
     translate(-width/2, -500);  //FINAL ROTACION AERONAVES
     
     translate(width/2, 500);  //ROTACION COMPASS
-    rotate(mouseX*turnRate);  //ROTACION COMPASS
+    rotate(rotation);  //ROTACION COMPASS
     //Compass
     int grades=0;
     float angleStep=radians(90)/18;
@@ -170,7 +177,7 @@ void draw(){
         }
         longStroke=!longStroke;
     }
-   rotate(-mouseX*turnRate);  //FINAL ROTACION COMPASS
+   rotate(-rotation);  //FINAL ROTACION COMPASS
   
   
    //Rectángulos negros
