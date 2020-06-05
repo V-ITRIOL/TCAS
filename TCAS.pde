@@ -1,5 +1,5 @@
 //Arreglo que contiene las aeronaves.
-Aircraft[] crafts = new Aircraft[20];
+Aircraft[] crafts = new Aircraft[200];
 
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
@@ -10,7 +10,7 @@ void setup(){
     dash.pattern(5,10);
     size(800, 700);
     for (int i = 0; i < crafts.length; i++) {
-      crafts[i] = new Aircraft(random(0, 1), 0, 0, 0);
+      crafts[i] = new Aircraft(random(0, 1), 0, 0.05, 0);
     }
 }
 
@@ -113,16 +113,21 @@ void draw(){
     stroke(0,204,0);
     dash.line(399, 470, 399,100);
     
+    translate(width/2, 500);  //ROTACION AERONAVES
+    rotate(mouseX*turnRate);  //ROTACION AERONAVES
+    translate(-width/2, -500);  //ROTACION AERONAVES
+    
     //Movimiento Aeronaves y muestra de las mismas.
     for (int i = 0; i < crafts.length; i++) {
       crafts[i].update();
       crafts[i].show();
     }
     
-    translate(width/2, 500);
-    rotate(mouseX*turnRate);
-    translate(-width/2, -500);
+    rotate(-mouseX*turnRate);  //FINAL ROTACION AERONAVES
+    translate(-width/2, -500);  //FINAL ROTACION AERONAVES
     
+    translate(width/2, 500);  //ROTACION COMPASS
+    rotate(mouseX*turnRate);  //ROTACION COMPASS
     //Compass
     int grades=0;
     float angleStep=radians(90)/18;
@@ -154,8 +159,7 @@ void draw(){
         }
         longStroke=!longStroke;
     }
-   
-   rotate(-mouseX*turnRate);
+   rotate(-mouseX*turnRate);  //FINAL ROTACION COMPASS
   
   
    //Rectángulos negros

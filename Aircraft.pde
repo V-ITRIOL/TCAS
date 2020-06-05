@@ -5,7 +5,7 @@ class Aircraft {
   
   Aircraft(float pos, float vx, float vy, float vz) {
     
-    deg = map(pos, 0, 1, 49, 132);
+    deg = map(pos, 0, 1, 0, 360);
     x = width/2 - 400*cos(radians(deg));
     y = -10 + 500 - 400*sin(radians(deg));
     z = 0;
