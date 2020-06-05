@@ -18,7 +18,9 @@ float VerSpeedOut=0;
 float VerSpeedUser=0;
 float airSpeedIn=340;
 float airSpeedOut=0;
-float airSpeedUser;
+float airSpeedUser=0;
+float airSpeedUser2= 0; 
+int f1=0;
 int mi=millis();
 int m = minute();
 int h = hour();
@@ -44,7 +46,7 @@ void draw(){
     //DEJAR EL BACKGROUND AQUI SINO LOS MATO
     background(0);
     strokeWeight(1.5);
-  //TEXTO BLANCO
+    //TEXTO BLANCO
     noStroke();
     fill(255,255,255);
     rect(220,557,14,3);
@@ -65,18 +67,20 @@ void draw(){
     text("POL", 547, 10);
     text("/", 175, 30);
     fill(0,204,0);
-    text("326", 165, 10);
-    text("330", 245, 10);
+    
     
     //Grados compass
     text(360-int(degrees(rotation))+"°", 590, 10);
     //text("292", 140, 30);
     
-    //Windspeed
+    //WINDSPEED
     if (millis()>mi+1000){
       windSpeed += random(-2,2);
       mi=millis();
     }
+    String swind= str(int(windSpeed));
+    text(swind, 210, 30);
+    
     
     //ALTURA DEL AVIÓN PROPIO Y VELOCIDADES
     if (keyPressed){
@@ -85,27 +89,38 @@ void draw(){
         case 'I':
         VerSpeedUser=VerSpeedUser+20;//20 ft/s
         airSpeedUser=airSpeedUser-5;
+        f1=-1;
         break;
         case 'k':
         case 'K':
         VerSpeedUser=VerSpeedUser-20;//-20 ft/s
         airSpeedUser=airSpeedUser+5;
+        f1=-1;
         break;
       }
     }
-    VerSpeedOut=VerSpeedOut+(VerSpeedUser/60);
-    airSpeedOut=airSpeedIn+(airSpeedUser/60);
+  
+    airSpeedUser2=airSpeedUser2+airSpeedUser;
+    VerSpeedOut=(VerSpeedUser/60);
+    airSpeedOut=airSpeedIn+(airSpeedUser2);
     heightOut=heightIn+VerSpeedOut;
     groundSpeedOut=airSpeedOut-windSpeed;
-
+    
+    
+    if(airSpeedOut<340 && f1==0){      
+      airSpeedOut=airSpeedOut+5;
+    }
+    else if(airSpeedOut>340 && f1==0){
+      airSpeedOut=airSpeedOut-5;
+    }
+    f1=0;
+  
     println(heightOut + " " +VerSpeedOut+" "+ airSpeedOut + " "+groundSpeedOut);
     VerSpeedUser=0;
     airSpeedUser=0;
     
-    String swind= str(int(windSpeed));
-    text(swind, 210, 30);
     
-    
+    //NM VOR 1 Y VOR 2
     text("30", 575, 30);
     text("30", 180, 580);
     text("14.7", 520, 580);
