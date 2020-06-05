@@ -3,14 +3,14 @@ Aircraft[] crafts = new Aircraft[20];
 
 import garciadelcastillo.dashedlines.*;
 DashedLines dash;
-float r1=600, r2=400,r3=200, r4=800;
+float r1=600, r2=400,r3=200, r4=800, turnRate=0.008;
 
 void setup(){
     dash = new DashedLines(this);
     dash.pattern(5,10);
     size(800, 700);
     for (int i = 0; i < crafts.length; i++) {
-      crafts[i] = new Aircraft(random(0, 1), random(-0.7, 0.5), random(0.1, 0.5), random(0.1,0.5));
+      crafts[i] = new Aircraft(random(0, 1), 0, 0, 0);
     }
 }
 
@@ -120,7 +120,7 @@ void draw(){
     }
     
     translate(width/2, 500);
-    rotate(mouseX*0.008);
+    rotate(mouseX*turnRate);
     translate(-width/2, -500);
     
     //Compass
@@ -155,7 +155,7 @@ void draw(){
         longStroke=!longStroke;
     }
    
-   rotate(-mouseX*0.008);
+   rotate(-mouseX*turnRate);
   
   
    //Rectángulos negros
