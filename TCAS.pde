@@ -8,13 +8,14 @@ float r1=600, r2=400,r3=200, r4=800;
 void setup(){
     dash = new DashedLines(this);
     dash.pattern(5,10);
-    size(800, 800);
+    size(800, 700);
     for (int i = 0; i < crafts.length; i++) {
       crafts[i] = new Aircraft(random(0, 1), random(-0.7, 0.5), random(0.1, 0.5));
     }
 }
 
 void draw(){
+    translate(0, 30);
     //DEJAR EL BACKGROUND AQUI SINO LOS MATO
     background(0);
     strokeWeight(1.5);
@@ -55,15 +56,15 @@ void draw(){
     dash.arc(width/2, 500, r3, 200, radians(radi),radians(radf));
     
     //recuadro TCAS
-    rect(135, 10, 525,600); 
+    rect(135, -15, 525,625); 
     
     //AVION PROPIO
     noStroke();
-    fill(255,255,50);
+    fill(255,255,60);
     rect(400,470,4,45);
     rect(380,480,45,4);
     rect(394,505,16,4);
-    rect(400,83,4,35);
+    rect(400,70,2.5,30);
     
     //FLECHA BLANCA
     fill(255,255,255);
@@ -103,9 +104,8 @@ void draw(){
     float angleStep=radians(90)/18;
     boolean longStroke=false;
     PFont fontcomp;
-    fontcomp = createFont("SansSerif", 19);
+    fontcomp = createFont("SansSerif", 20);
     textFont(fontcomp);
-    
     
     stroke(255);
     strokeWeight(1.5);
@@ -121,21 +121,15 @@ void draw(){
               sg="0";
             }
             fill(255);
-            text(sg,-10,-430);
+            text(sg,-8,-435);
             break;
-          }
-         
+          }     
         } 
         else {
           line(0, -400, 0, -410);
         }
         longStroke=!longStroke;
-       
     }
-    
-   
-      
-    
   
    //Rectángulos negros
     fill(0);
