@@ -30,21 +30,41 @@ void draw(){
     fill(255,255,255);
     rect(220,557,14,3);
 
-    PFont font, font2;
+    PFont font, font2, font3;
     font = createFont("SansSerif", 19);
     textFont(font);
     text("VOR1", 172, 533);
     text("VOR2", 555, 533);
     text("POL", 160, 555);
     text("INT", 560, 555);
+    text("POL", 547, 10);
+    text("/", 175, 30);
+    
+    fill(0,204,0);
+    text("326", 165, 10);
+    text("330", 245, 10);
+    text("351°", 590, 10);
+    text("292", 140, 30);
+    text("5", 210, 30);
+    text("30", 575, 30);
+    text("30", 180, 580);
+    text("14.7", 520, 580);
+    text("13:05", 600, 50);
     font2 = createFont("SansSerif", 16);
     textFont(font2);
+    fill(255,255,255);
+    text("GS", 140, 10);
+    text("TAS", 210, 10);
     text("M", 220, 555);
     text("M", 538, 555);
     fill(51,204,255);
     text("NM", 220, 580);
-    text("NM", 560, 575);
-    
+    text("NM", 560, 580);
+    text("NM", 617, 30);
+    font3 = createFont("SansSerif", 22);
+    textFont(font3);
+    fill(0,204,0);
+    text("VOR APP", 350, 10);
     int radi=200, radf=340;
     
     //Arcs
