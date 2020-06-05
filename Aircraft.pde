@@ -1,20 +1,22 @@
 class Aircraft {
-  float x, y, z, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velZTotal;
+  float x, y, z, zDisplay, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velZTotal;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
   int flagTraffic = -1, flagClear = -1;
+  
+  //EQUIVALENCIA : 1 nmi = 10 pixeles.
   
   Aircraft(float pos, float vx, float vy, float vz) {
     
     //deg = map(pos, 0, 1, 0, 360);
     deg = map(pos, 0, 1, 49, 132);
     x = width/2 - 400*cos(radians(deg));
-    y = -10 + 500 - 400*sin(radians(deg));
-    z = 0;
+    y = -10 + 500 - 400*sin(radians(deg)); // every nmi is 10 pixels cause 400 pixels of radius, tcas only considers 40 nmi
+    z = random(28000, 34400) - heightIn; // in ft
 
-    velX = vx;
-    velY = vy;
-    velZ = vz;
+    velX = (10*vx)/(3600*60); // in pixels/s
+    velY = (10*vy)/(3600*60); // in pixels/s
+    velZ = vz; // in ft/s
     
     velUserY = 0;
     velUserX = 0;
@@ -42,11 +44,11 @@ class Aircraft {
           velUserX = velUserX - 1;
           break;
         case ' ':
-          velUserZ = velUserZ + 0.0001;
+          velUserZ = velUserZ + 15.0;
           break;
         case 'x':
         case 'X':
-          velUserZ = velUserZ - 0.0001;
+          velUserZ = velUserZ - 15.0;
         default:
           break;
       }
@@ -57,17 +59,25 @@ class Aircraft {
     y = y + velY + velUserY;
     
     // grasiosada aki abajo
-    velZTotal = velZTotal + velZ + velUserZ;
-    z = z + velZTotal;
-    distance = dist(x, y, width/2, 500);
+    velZTotal = velZTotal + velZ + velUserZ/60.0;
+    z = z + velZTotal; // feet
+    zDisplay = z/100.0; // feet x 10e2
+    
+    distance = dist(x, y, width/2, 500); // en pixeles
+    distance = distance/10;//en nmi
+    
     timeX = distance/velX;
     timeY = distance/velY;
     
+    println(z);
     
     velUserX = 0;
     velUserY = 0;
     velUserZ = 0;
   }
+  
+  
+  
   
   void show() {
     
@@ -78,7 +88,7 @@ class Aircraft {
     
     //Diamantes próximos
     
-    if (distance < 400 && distance > 300 && y < 510) {
+    if (distance < 40 && distance > 30 && y < 510) {
       //Clear of conflict cuando ya no haya naves próximas
         if (flagClear == 0) {
         clear.play();
@@ -96,19 +106,19 @@ class Aircraft {
       fill(255);
       //altura
       if (z > 0) {
-        if(z >= 10) {
-          text("+" + int(z), x - 5, y - 13);
+        if(z >= 1000) {
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         } else {
-          text("+" + "0" + int(z), x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         }
       } else {
-        if(z <= -10) {
-          text(int(z), x - 5, y + 23);
+        if(z <= -1000) {
+          text(nf(zDisplay, 2, -2), x - 5, y + 23);
         } else {
-          text("-" + "0" + -1*int(z), x - 5, y + 23);
+          text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
-      //Arror velocity
+      //Arrow velocity
       if (velZTotal > 0) {
         text("↑", x + 16, y + 10);
       } else {
@@ -126,7 +136,7 @@ class Aircraft {
     //Diamantes Rellenos (TRAFICO)
     
     
-    if (distance <= 300 && distance > 200 && y < 510) {
+    if (distance <= 30 && distance > 20 && y < 510) {
       if (flagTraffic == 0) {
         traffic.play();
         flagTraffic = 1;
@@ -144,16 +154,16 @@ class Aircraft {
       
       //altura
       if (z > 0) {
-        if(z >= 10) {
-          text("+" + int(z), x - 5, y - 13);
+        if(z >= 1000) {
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         } else {
-          text("+" + "0" + int(z), x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         }
       } else {
-        if(z <= -10) {
-          text(int(z), x - 5, y + 23);
+        if(z <= -1000) {
+          text(nf(zDisplay, 2, -2), x - 5, y + 23);
         } else {
-          text("-" + "0" + -1*int(z), x - 5, y + 23);
+          text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
       //Arror velocity
@@ -170,7 +180,7 @@ class Aircraft {
     }
     
     
-    if (distance <= 200 && distance > 100 && y < 510) {
+    if (distance <= 20 && distance > 10 && y < 510) {
       fill(yellow);
       stroke(yellow);
       strokeWeight(0.5);
@@ -183,16 +193,16 @@ class Aircraft {
       
       //altura
       if (z > 0) {
-        if(z >= 10) {
-          text("+" + int(z), x - 5, y - 13);
+        if(z >= 1000) {
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         } else {
-          text("+" + "0" + int(z), x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         }
       } else {
-        if(z <= -10) {
-          text(int(z), x - 5, y + 23);
+        if(z <= -1000) {
+          text(nf(zDisplay, 2, -2), x - 5, y + 23);
         } else {
-          text("-" + "0" + -1*int(z), x - 5, y + 23);
+          text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
       //Arror velocity
@@ -208,7 +218,7 @@ class Aircraft {
     }
     
     
-    if (distance < 100 && y < 510) {
+    if (distance < 10 && y < 510) {
       fill(red);
       stroke(red);
       strokeWeight(0.5);
@@ -221,16 +231,16 @@ class Aircraft {
       
       //altura
       if (z > 0) {
-        if(z >= 10) {
-          text("+" + int(z), x - 5, y - 13);
+        if(z >= 1000) {
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         } else {
-          text("+" + "0" + int(z), x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         }
       } else {
-        if(z <= -10) {
-          text(int(z), x - 5, y + 23);
+        if(z <= -1000) {
+          text(nf(zDisplay, 2, -2), x - 5, y + 23);
         } else {
-          text("-" + "0" + -1*int(z), x - 5, y + 23);
+          text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
       //Arror velocity
