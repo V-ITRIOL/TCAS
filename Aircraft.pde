@@ -5,7 +5,7 @@ class Aircraft {
   float x, y, z, zDisplay, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velXTotal, velYTotal, velZTotal, magVelXY, tauXY, tauZ;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
-  int flagTraffic = -1, flagClear = -1;
+  int flagTraffic = -1, flagClear = -1, speed = 0;
   
   //EQUIVALENCIA : 1 nmi = 10 pixeles.
   
@@ -32,19 +32,31 @@ class Aircraft {
       switch (key) {
         case 'w':
         case 'W':
-          velUserY = -10000; // nmi/h
+          if (speed == 0)
+            velUserY = -10000; // nmi/h
+          if (speed == 1)
+            velUserY = -2000;
           break;
         case 's':
         case 'S':
-          velUserY = 10000; // nmi/h
+          if (speed == 0)
+            velUserY = 10000; // nmi/h
+          if (speed == 1)
+            velUserY = 2000;
           break;
         case 'd':
         case 'D':
-          velUserX = 10000; // nmi/h
+          if (speed == 0)
+            velUserX = 10000; // nmi/h
+          if (speed == 1)
+            velUserX = 2000;
           break;
         case 'a':
         case 'A':
-          velUserX = -10000; // nmi/h
+          if (speed == 0)
+            velUserX = -10000; // nmi/h
+          if (speed == 1)
+            velUserX = -2000;
           break;
         case ' ':
           velUserZ = 15.0;  // ft/s
@@ -52,6 +64,15 @@ class Aircraft {
         case 'x':
         case 'X':
           velUserZ = -15.0; // ft/s
+          break;
+        case 'f':
+        case 'F':
+          speed = speed + 1;
+          if (speed > 1) {
+            speed = 0;
+          }
+          delay(500);
+          break;
         default:
           break;
       }
@@ -70,7 +91,6 @@ class Aircraft {
     
     // Magnitude Velocity
     magVelXY = mag(velXTotal, velYTotal); // en nmi/h
-    println(z);
     
     // Distance
     distance = dist(x, y, width/2, 500); // en pixeles
@@ -100,12 +120,20 @@ class Aircraft {
     PFont data;
     data = createFont("SansSerif", 15);
     textFont(data);
+    text("tauXY: " + tauXY, 550, 480);
+    text("tauZ: " + tauZ, 550, 500);
+    text("mode: " + speed, 550, 460);
     
     //
     // Trafico no amenazante
     //
     
     if (distance < 40 && distance > 6 && y < 520 && abs(z) > 1200 && tauXY > 48 && tauZ > 48) {
+      
+      if (flagClear == 0) {
+        clear.play();
+        flagClear = 1;
+      }
       
       noFill();
       stroke(255);
@@ -141,7 +169,7 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
-      
+      flagTraffic = 0;
     }
     
     
@@ -201,7 +229,7 @@ class Aircraft {
     // Circulos amarillos (TA)
     //
     
-    if (distance < 40 && y < 520 && (tauXY <= 48 || tauZ <= 48) && tauXY > 38 && tauZ > 38) {
+    if (distance < 40 && y < 520 && (tauXY <= 48 || tauZ <= 48) && tauXY > 35 && tauZ > 35) {
       
       if (flagTraffic == 0) {
         traffic.play();
@@ -252,6 +280,12 @@ class Aircraft {
     //
     
     if (distance < 40 && y < 520 && (tauXY <= 35 || tauZ <= 35)) {
+      
+      if (flagTraffic == 0) {
+        traffic.play();
+        flagTraffic = 1;
+      }
+      
       fill(red);
       stroke(red);
       strokeWeight(0.5);
@@ -287,6 +321,8 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
+      
+      flagClear = 0;
     }
     
     
