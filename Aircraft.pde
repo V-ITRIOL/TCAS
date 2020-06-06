@@ -105,7 +105,7 @@ class Aircraft {
     // Trafico no amenazante
     //
     
-    if (distance < 40 && distance > 6 && y < 510 && abs(z) > 1200 && tauXY > 48 && tauZ > 48) {
+    if (distance < 40 && distance > 6 && y < 520 && abs(z) > 1200 && tauXY > 48 && tauZ > 48) {
       
       noFill();
       stroke(255);
@@ -149,7 +149,7 @@ class Aircraft {
     // Diamantes Rellenos (Trafico proximo)
     //
     
-    if (distance < 40 && (distance <= 6 || abs(z) <= 1200) && y < 510 && tauXY > 48 && tauZ > 48) {
+    if (distance < 40 && (distance <= 6 || abs(z) <= 1200) && y < 520 && tauXY > 48 && tauZ > 48) {
       
       //Clear of conflict cuando ya no haya naves amenazantes
         if (flagClear == 0) {
@@ -201,7 +201,7 @@ class Aircraft {
     // Circulos amarillos (TA)
     //
     
-    if (distance < 40 && y < 510 && (tauXY <= 48 || tauZ <= 48) && tauXY > 38 && tauZ > 38) {
+    if (distance < 40 && y < 520 && (tauXY <= 48 || tauZ <= 48) && tauXY > 38 && tauZ > 38) {
       
       if (flagTraffic == 0) {
         traffic.play();
@@ -251,7 +251,7 @@ class Aircraft {
     // Cuadrados Rojos (RA)
     //
     
-    if (distance < 40 && y < 510 && (tauXY <= 35 || tauZ <= 35)) {
+    if (distance < 40 && y < 520 && (tauXY <= 35 || tauZ <= 35)) {
       fill(red);
       stroke(red);
       strokeWeight(0.5);
