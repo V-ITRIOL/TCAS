@@ -1,3 +1,6 @@
+// Altura de entre 20000 y 42000 ft, se utilizan los valores para tau de 48s para TA y 35s para RA
+
+
 class Aircraft {
   float x, y, z, zDisplay, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velXTotal, velYTotal, velZTotal, magVelXY, tauXY, tauZ;
   color yellow = color(255, 204, 0);
@@ -67,7 +70,7 @@ class Aircraft {
     
     // Magnitude Velocity
     magVelXY = mag(velXTotal, velYTotal); // en nmi/h
-    println(magVelXY);
+    println(z);
     
     // Distance
     distance = dist(x, y, width/2, 500); // en pixeles
@@ -75,7 +78,13 @@ class Aircraft {
     
     // CPA (Closest point of collision)
     tauXY = (distance/magVelXY)*3600; // en segundos
-    tauZ = abs(z/velZTotal);
+    if (velZTotal > 0) {
+      tauZ = (-1*z)/15.0; // en segundos
+    } else if (velZTotal < 0) {
+      tauZ = (z)/15.0; // en segundos
+    } else {
+      tauZ = 999999; 
+    }
     
     
     velUserX = 0;
@@ -92,15 +101,11 @@ class Aircraft {
     data = createFont("SansSerif", 15);
     textFont(data);
     
-    
-    //Diamantes próximos
+    //
+    // Trafico no amenazante
+    //
     
     if (distance < 40 && distance > 30 && y < 510) {
-      //Clear of conflict cuando ya no haya naves próximas
-        if (flagClear == 0) {
-        clear.play();
-        flagClear = 1;
-      }
       
       noFill();
       stroke(255);
@@ -114,15 +119,15 @@ class Aircraft {
       //altura
       if (z > 0) {
         if(z >= 1000) {
-          text("+" + nf(zDisplay, 2, -2) + " " + tauZ, x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         } else {
-          text("+" + nf(zDisplay, 2, -2) + " " + tauZ, x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
         }
       } else {
         if(z <= -1000) {
-          text(nf(zDisplay, 2, -2) + " " + tauZ, x - 5, y + 23);
+          text(nf(zDisplay, 2, -2), x - 5, y + 23);
         } else {
-          text("-" + nf(-1*zDisplay, 2, -2) + " " + tauZ, x - 5, y + 23);
+          text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
         }
       }
       
@@ -136,18 +141,20 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
-      flagTraffic = 0;
+      
     }
     
     
-    
-    //Diamantes Rellenos (TRAFICO)
-    
+    //
+    // Diamantes Rellenos (Trafico proximo)
+    //
     
     if (distance <= 30 && distance > 20 && y < 510) {
-      if (flagTraffic == 0) {
-        traffic.play();
-        flagTraffic = 1;
+      
+      //Clear of conflict cuando ya no haya naves próximas
+        if (flagClear == 0) {
+        clear.play();
+        flagClear = 1;
       }
       
       fill(255);
@@ -185,11 +192,22 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
-      flagClear = 0;
+      
+      flagTraffic = 0;
+      
     }
     
+    //
+    // Circulos amarillos (TA)
+    //
     
     if (distance <= 20 && distance > 10 && y < 510) {
+      
+      if (flagTraffic == 0) {
+        traffic.play();
+        flagTraffic = 1;
+      }
+      
       fill(yellow);
       stroke(yellow);
       strokeWeight(0.5);
@@ -225,8 +243,13 @@ class Aircraft {
       translate((x + 8), y);  //ROTACION AERONAVES
       rotate(rotation);  //FINAL ROTACION AERONAVES
       translate(-(x + 8), -y);  //ROTACION AERONAVES
+      
+      flagClear = 0;
     }
     
+    //
+    // Cuadrados Rojos (RA)
+    //
     
     if (distance < 10 && y < 510) {
       fill(red);
