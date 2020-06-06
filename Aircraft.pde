@@ -1,5 +1,5 @@
 class Aircraft {
-  float x, y, z, zDisplay, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velZTotal;
+  float x, y, z, zDisplay, velX, velY, velZ, deg, distance, timeX, timeY, velUserX, velUserY, velUserZ, velXTotal, velYTotal, velZTotal, magVelXY, tauXY, tauZ;
   color yellow = color(255, 204, 0);
   color red = color(255, 0, 0);
   int flagTraffic = -1, flagClear = -1;
@@ -14,8 +14,8 @@ class Aircraft {
     y = -10 + 500 - 400*sin(radians(deg)); // every nmi is 10 pixels cause 400 pixels of radius, tcas only considers 40 nmi
     z = random(28000, 34400) - heightIn; // in ft
 
-    velX = (10*vx)/(3600*60); // in pixels/s
-    velY = (10*vy)/(3600*60); // in pixels/s
+    velX = vx; // in nmi/h
+    velY = vy; // in nmi/h
     velZ = vz; // in ft/s
     
     velUserY = 0;
@@ -29,47 +29,54 @@ class Aircraft {
       switch (key) {
         case 'w':
         case 'W':
-          velUserY = velUserY - 1;
+          velUserY = -10000; // nmi/h
           break;
         case 's':
         case 'S':
-          velUserY = velUserY + 1;
+          velUserY = 10000; // nmi/h
           break;
         case 'd':
         case 'D':
-          velUserX = velUserX + 1;
+          velUserX = 10000; // nmi/h
           break;
         case 'a':
         case 'A':
-          velUserX = velUserX - 1;
+          velUserX = -10000; // nmi/h
           break;
         case ' ':
-          velUserZ = 15.0;
+          velUserZ = 15.0;  // ft/s
           break;
         case 'x':
         case 'X':
-          velUserZ = -15.0;
+          velUserZ = -15.0; // ft/s
         default:
           break;
       }
     }
     
     // Calculations and updates
-    x = x + velX + velUserX;
-    y = y + velY + velUserY;
+    velXTotal = velX + velUserX;
+    velYTotal = velY + velUserY;
+    x = x + (10*velXTotal)/(3600*60);
+    y = y + (10*velYTotal)/(3600*60);
     
     // grasiosada aki abajo
-    velZTotal = velZ + velUserZ/60.0;
+    velZTotal = velZ + velUserZ/60.0; // ft/s
     z = z + velZTotal - (verSpeedUser/60.0); // feet
     zDisplay = z/100.0; // feet x 10e2
     
+    // Magnitude Velocity
+    magVelXY = mag(velXTotal, velYTotal); // en nmi/h
+    println(magVelXY);
+    
+    // Distance
     distance = dist(x, y, width/2, 500); // en pixeles
     distance = distance/10;//en nmi
     
-    timeX = distance/velX;
-    timeY = distance/velY;
+    // CPA (Closest point of collision)
+    tauXY = (distance/magVelXY)*3600; // en segundos
+    tauZ = abs(z/velZTotal);
     
-    println(z);
     
     velUserX = 0;
     velUserY = 0;
@@ -107,15 +114,15 @@ class Aircraft {
       //altura
       if (z > 0) {
         if(z >= 1000) {
-          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2) + " " + tauZ, x - 5, y - 13);
         } else {
-          text("+" + nf(zDisplay, 2, -2), x - 5, y - 13);
+          text("+" + nf(zDisplay, 2, -2) + " " + tauZ, x - 5, y - 13);
         }
       } else {
         if(z <= -1000) {
-          text(nf(zDisplay, 2, -2), x - 5, y + 23);
+          text(nf(zDisplay, 2, -2) + " " + tauZ, x - 5, y + 23);
         } else {
-          text("-" + nf(-1*zDisplay, 2, -2), x - 5, y + 23);
+          text("-" + nf(-1*zDisplay, 2, -2) + " " + tauZ, x - 5, y + 23);
         }
       }
       

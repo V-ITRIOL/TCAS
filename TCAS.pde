@@ -39,7 +39,7 @@ void setup(){
     dash.pattern(5,10);
     size(800, 700);
     for (int i = 0; i < crafts.length; i++) {
-      crafts[i] = new Aircraft(random(0, 1), random(-50, 100), random(360, 680), 0);
+      crafts[i] = new Aircraft(random(0, 1), random(-50, 100), random(360, 400), 0);
     }
     traffic = new SoundFile(this, "traffic.wav");
     clear = new SoundFile(this, "clear.wav");
