@@ -15,7 +15,6 @@ float degreeIn = 0;
 float degreeUser = 0;
 float degreeTotal = 0;
 int f2;
-
 float windSpeed=15;
 float heightIn=30000;
 float heightOut=0;
@@ -27,12 +26,8 @@ float airSpeedOut=0;
 float airSpeedUser=0;
 float airSpeedDiff= 0; 
 int f1=0;
-
 int mi=millis();
-int m = minute();
-int h = hour();
-String sm= str(m);
-String sh= str(h);
+
 
 void setup(){
     dash = new DashedLines(this);
@@ -46,6 +41,10 @@ void setup(){
 }
 
 void draw(){
+    int m = minute();
+    int h = hour();
+    String sm= str(m);
+    String sh= str(h);
     //Cálculo de los ángulos en rotation:
     if (keyPressed) {
       switch (key) {
@@ -124,6 +123,9 @@ void draw(){
     if (millis()>mi+1000){
       windSpeed += random(-2,2);
       mi=millis();
+    }
+    if(windSpeed<1){
+      windSpeed = 1;
     }
     String swind= str(int(windSpeed));
     text(swind, 210, 30);
