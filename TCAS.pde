@@ -14,6 +14,7 @@ float degreeDiff;
 float degreeIn = 0;
 float degreeUser = 0;
 float degreeTotal = 0;
+float degreeWind = 235;
 int f2;
 float windSpeed=15;
 float heightIn=30000;
@@ -41,7 +42,7 @@ void setup(){
 }
 
 void draw(){
-    
+
     int m = minute();
     int h = hour();
     String sm= str(m);
@@ -65,9 +66,8 @@ void draw(){
     }
     degreeDiff = degreeDiff + degreeUser;
     degreeTotal = degreeTotal + degreeIn + degreeDiff;
-    
    
-    
+
     if (f2 == 0 && degreeDiff > 0) {
       degreeDiff = degreeDiff - 1/60.0;
       if (abs(degreeDiff) < 0.01) {
@@ -114,17 +114,18 @@ void draw(){
     text("POL", 160, 555);
     text("INT", 560, 555);
     text("POL", 547, 10);
-    text("/", 175, 30);
+    text("/", 180, 30);
     fill(0,204,0);
     
     
-    //Grados compass
+    //GRADOS COMPASS
     text(360-int(degrees(rotation))+"°", 590, 10);
     //text("292", 140, 30);
     
     //WINDSPEED
     if (millis()>mi+1000){
       windSpeed += random(-2,2);
+      degreeWind += random (-2,2);
       mi=millis();
     }
     if(windSpeed<1){
@@ -132,6 +133,18 @@ void draw(){
     }
     String swind= str(int(windSpeed));
     text(swind, 210, 30);
+    
+    //GRADOS DEL AIRE
+    degreeWind = degreeWind - degreeDiff;
+    String dwind = str(int(degreeWind));
+    if(degreeWind>360){
+       degreeWind=0;
+    }
+    else if (degreeWind<0){
+      degreeWind=360;
+    }
+    text(dwind + "°", 140, 30); 
+    
     
     
     //ALTURA DEL AVIÓN PROPIO Y VELOCIDADES
@@ -299,10 +312,7 @@ void draw(){
         longStroke=!longStroke;
         grades++;
     }
-    
 
-
-    
     rotate(-rotation);  //FINAL ROTACION COMPASS
   
   
