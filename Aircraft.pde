@@ -120,6 +120,8 @@ class Aircraft {
     PFont data;
     data = createFont("SansSerif", 15);
     textFont(data);
+    
+    // DEBUG PARA TIEMPOS Y CONDICIONES
     text("tauXY: " + tauXY, 550, 480);
     text("tauZ: " + tauZ, 550, 500);
     text("mode: " + speed, 550, 460);
