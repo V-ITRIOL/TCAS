@@ -41,6 +41,7 @@ void setup(){
 }
 
 void draw(){
+    
     int m = minute();
     int h = hour();
     String sm= str(m);
@@ -64,6 +65,8 @@ void draw(){
     }
     degreeDiff = degreeDiff + degreeUser;
     degreeTotal = degreeTotal + degreeIn + degreeDiff;
+    
+   
     
     if (f2 == 0 && degreeDiff > 0) {
       degreeDiff = degreeDiff - 1/60.0;
@@ -297,19 +300,8 @@ void draw(){
         grades++;
     }
     
-   //LÍMITES DE ALERTA 10 Y 15
-    fill(51,204,255);
-    PFont fontlim;
-    fontlim = createFont("SansSerif", 16);
-    textFont(fontlim);
-    rotate(radians(-65));
-    text("15",0,-280);
-    text("10",0,-180);
-    rotate(-radians(-65));    
-    rotate(radians(50));
-    text("15",0,-280);
-    text("10",0,-180);
-    rotate(-radians(50));
+
+
     
     rotate(-rotation);  //FINAL ROTACION COMPASS
   
@@ -323,6 +315,26 @@ void draw(){
       //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
       translate(-width/2, -500);
       rect(0, 611, 800, 800);
+      
+      //LÍMITES DE ALERTA 10 Y 15
+      fill(51,204,255);
+      translate(width/2, 500);
+      PFont fontlim;
+      fontlim = createFont("SansSerif", 16);
+      textFont(fontlim);
+      rotate(radians(-40));
+      text("40",0,-380);
+      text("30",0,-280);
+      text("20",0,-180);
+      text("10",0,-80);
+      rotate(-radians(-40));    
+      rotate(radians(30));
+      text("40",0,-380);
+      text("30",0,-280);
+      text("20",0,-180);
+      text("10",0,-80);
+      rotate(-radians(30));
+      translate(-width/2, -500);
       
       airSpeedUser = 0;
       verSpeedUser = 0;
