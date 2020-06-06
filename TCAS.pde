@@ -296,21 +296,36 @@ void draw(){
         longStroke=!longStroke;
         grades++;
     }
-   rotate(-rotation);  //FINAL ROTACION COMPASS
-  
-  
-   //Rectángulos negros
-    fill(0);
-    rotate(-angleStep);
-    noStroke();
-    rect(-400, -800, 135, 1000);
-    rect(261, -800, 800, 1000);
-    //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
-    translate(-width/2, -500);
-    rect(0, 611, 800, 800);
     
-    airSpeedUser = 0;
-    verSpeedUser = 0;
-    f1 = 0;
+   //LÍMITES DE ALERTA 10 Y 15
+    fill(51,204,255);
+    PFont fontlim;
+    fontlim = createFont("SansSerif", 16);
+    textFont(fontlim);
+    rotate(radians(-65));
+    text("15",0,-280);
+    text("10",0,-180);
+    rotate(-radians(-65));    
+    rotate(radians(50));
+    text("15",0,-280);
+    text("10",0,-180);
+    rotate(-radians(50));
+    
+    rotate(-rotation);  //FINAL ROTACION COMPASS
+  
+  
+    //Rectángulos negros
+      fill(0);
+      rotate(-angleStep);
+      noStroke();
+      rect(-400, -800, 135, 1000);
+      rect(261, -800, 800, 1000);
+      //ESTE COMANDO TE PONE EN LA ESQUINA SUPERIOR IZQUIERDA
+      translate(-width/2, -500);
+      rect(0, 611, 800, 800);
+      
+      airSpeedUser = 0;
+      verSpeedUser = 0;
+      f1 = 0;
     
 }
