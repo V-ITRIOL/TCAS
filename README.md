@@ -1,7 +1,7 @@
 # TCAS Simulator
 ### Traffic alert and Collision Avoidance System (TCAS) simulator for badass dudes made with Processing. 
 
-The code is a mess right now and there are almost no comments on it, if you need the code it will most likely be a pain to decipher. We are sure there are more efficient ways to code what we've done and there are probably a lot of variables and conditions that are poorly optimised, but considering we made this in 3-4 days non-stop
+The code is a mess right now and there are almost no comments on it, if you need the code it will most likely be a pain to decipher. We are sure there are more efficient ways to code what we've done and there are probably a lot of variables and conditions that are poorly optimised, but considering we made this in 3-4 days non-stop we aren't so concerned about that.
 
 ## Setup
 
